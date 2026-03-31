@@ -1,1 +1,1 @@
-# mykos
+# mykost
