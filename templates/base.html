@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyKost - Agen Pencari Kos Pribadi Anda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00a693', // Teal/Tosca
+                        primarydark: '#008a7a',
+                        bglight: '#f4f3f0', // Off-white background
+                        footerbg: '#222222'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f4f3f0; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <header class="bg-bglight border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-8">
+                    <a href="/" class="text-2xl font-bold text-gray-900 tracking-tight">
+                        my<span class="text-primary">kost</span>
+                    </a>
+                    <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-600">
+                        <a href="/user/home" class="hover:text-primary transition">Cari Kos</a>
+                        <a href="#" class="hover:text-primary transition">Cara Kerja</a>
+                        <a href="#" class="hover:text-primary transition">Tentang MyKost</a>
+                    </nav>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    {% if current_user %}
+                        <span class="hidden md:block text-[10px] font-bold px-3 py-1 bg-teal-100 text-primary rounded-full uppercase tracking-wider">
+                            {{ current_user.role }}
+                        </span>
+                        
+                        {% if current_user.role == 'user' %}
+                            <a href="/user/home" class="text-sm font-semibold text-gray-700 hover:text-primary">Dashboard</a>
+                        {% elif current_user.role == 'agent' %}
+                            <a href="/agent/dashboard" class="text-sm font-semibold text-gray-700 hover:text-primary">Agent Panel</a>
+                        {% elif current_user.role == 'admin' %}
+                            <a href="/admin/dashboard" class="text-sm font-semibold text-gray-700 hover:text-primary">Admin Panel</a>
+                        {% endif %}
+
+                        <a href="/logout" class="text-sm font-bold text-red-500 hover:text-red-700 ml-2">Keluar</a>
+                    {% else %}
+                        <a href="/login" class="text-sm font-semibold text-gray-700 hover:text-primary">Masuk</a>
+                        <a href="/register" class="bg-primary hover:bg-primarydark text-white px-5 py-2 rounded-full text-sm font-bold transition shadow-sm">Daftar</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 mt-4 w-full">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="p-4 mb-4 text-sm rounded-xl bg-{{ 'green' if category == 'success' else 'red' if category == 'danger' else 'blue' }}-100 text-{{ 'green' if category == 'success' else 'red' if category == 'danger' else 'blue' }}-700 border border-{{ 'green' if category == 'success' else 'red' if category == 'danger' else 'blue' }}-200">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-footerbg text-white pt-12 pb-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-500">
+            © 2026 MyKost. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

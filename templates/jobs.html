@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="p-4 space-y-6">
+    <h2 class="text-2xl font-bold">Available Moving Jobs</h2>
+    
+    <div class="space-y-4">
+        {% if moving_jobs %}
+            {% for addon in moving_jobs %}
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded">ADD-ON JOB</span>
+                    <span class="text-xs text-gray-500">Order Ref: #{{ addon.order_id }}</span>
+                </div>
+                
+                <div class="mt-3">
+                    <p class="text-sm text-gray-600"><strong>Items to move:</strong><br> {{ addon.items_desc }}</p>
+                    <p class="text-sm font-semibold text-gray-800 mt-2">Scheduled Date: {{ addon.moving_date }}</p>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-gray-100 flex space-x-2">
+                    <form action="#" method="POST" class="w-full">
+                        <button type="submit" class="w-full bg-emerald-500 text-white font-bold py-2 rounded-lg hover:bg-emerald-600">
+                            Accept Job
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="text-center mt-10">
+                <svg class="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                <p class="text-gray-500">No moving requests available yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

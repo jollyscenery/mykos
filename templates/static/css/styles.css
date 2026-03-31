@@ -1,0 +1,62 @@
+/* ==========================================================================
+MyKost Custom Styles
+(Melengkapi Tailwind CSS)
+   ========================================================================== */
+
+/* 1. CUSTOM SCROLLBAR (Memberikan kesan aplikasi modern/mobile) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* slate-300 */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* slate-400 */
+}
+
+/* 2. HILANGKAN PANAH (SPINNER) PADA INPUT NUMBER */
+/* Agar form budget terlihat lebih bersih seperti di aplikasi Grab/Gojek */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* 3. BATASI RESIZE TEXTAREA */
+textarea {
+    resize: vertical; /* Hanya bisa ditarik ke bawah, tidak merusak layout ke samping */
+    min-height: 80px;
+}
+
+/* 4. ANIMASI MUNCUL (FADE-IN SLIDE) UNTUK PAGE LOAD */
+/* Tambahkan class "animate-fade-in" ke elemen utama di HTML Anda jika ingin efek ini */
+.animate-fade-in {
+    animation: fadeInSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 5. EFEK KLIK (TAP HIGHLIGHT) UNTUK PENGGUNA HP */
+a, button {
+    -webkit-tap-highlight-color: transparent;
+}
