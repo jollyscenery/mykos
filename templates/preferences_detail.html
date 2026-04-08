@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto my-12 bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Detail Preferensi</h2>
+    <p class="text-gray-500 mb-6">Tulis kriteria kos yang kamu inginkan (misal: AC, kamar mandi dalam luas, dekat stasiun).</p>
+
+    <form action="/user/select_agent" method="POST">
+        <textarea name="detailed_prefs" required rows="6" placeholder="Contoh: Saya butuh kos yang kamarnya cukup luas minimal 3x4 meter, ada AC, kamar mandi di dalam dengan air panas. Area parkir luas karena saya bawa mobil..." class="w-full p-4 rounded-xl border border-gray-300 focus:border-primary outline-none mb-6"></textarea>
+        
+        <button type="submit" class="w-full bg-primary hover:bg-primarydark text-white font-bold py-3 rounded-xl transition shadow-lg">Pilih Agen</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto my-12 px-4">
+    <h2 class="text-3xl font-bold text-gray-900 mb-2">Order #{{ order.id }} Dashboard</h2>
+    <span class="px-3 py-1 bg-teal-100 text-primary rounded-full text-xs font-bold uppercase">{{ order.status }}</span>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <a href="/user/order/{{ order.id }}/location" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary transition group">
+            <h3 class="font-bold text-lg group-hover:text-primary">📍 Lacak Lokasi Agen</h3>
+            <p class="text-sm text-gray-500 mt-2">Lihat posisi agen saat sedang survei ke lokasi.</p>
+        </a>
+        
+        <a href="/user/order/{{ order.id }}/chat" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary transition group">
+            <h3 class="font-bold text-lg group-hover:text-primary">💬 Chat Agen</h3>
+            <p class="text-sm text-gray-500 mt-2">Tanya progres atau minta agen fotoin sudut tertentu.</p>
+        </a>
+
+        <a href="/user/order/{{ order.id }}/report" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:border-primary transition group md:col-span-2">
+            <h3 class="font-bold text-lg group-hover:text-primary">📑 Lihat Laporan Final Kos</h3>
+            <p class="text-sm text-gray-500 mt-2">Hasil survei, foto, kelebihan, dan kekurangan kos.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}
